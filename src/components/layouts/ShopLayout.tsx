@@ -1,0 +1,42 @@
+import {FC} from 'react'
+import Head  from 'next/head'
+import { Navbar, SideMenu } from '../ui';
+
+
+interface Props {
+    children: JSX.Element;
+    title: string;
+    pageDescription: string;
+    imageFulUrl?: string;
+}
+export const ShopLayout: FC<Props> = ({children, title, pageDescription, imageFulUrl = ''}) => {
+  return (
+    <>
+        <Head>
+            <title>{title}</title>
+            <meta name='description' content={pageDescription} />
+            <meta name='og:title' content={title} />
+            <meta name='og:descrption' content={pageDescription} />
+            {
+                imageFulUrl && (
+                    <meta name='og:image' content={imageFulUrl} />
+                )
+            }
+        </Head>
+        <nav>
+            <Navbar />
+        </nav>
+
+        <SideMenu />
+
+        <main style={{margin: '80px auto', maxWidth: '1440px', padding:'0px 30px'}}>
+            {children}
+        </main>
+
+        <footer>
+            {/*TODO: custom footer */}
+        </footer>
+    </>
+   
+  )
+}
